@@ -16,9 +16,16 @@ fun FormListPane(
     onContactClick: () -> Unit,
     onAddressClick: () -> Unit,
     onAppleClick: () -> Unit,
+    onDrillingPlodClick: () -> Unit = {},
 ) {
     Scaffold(modifier = modifier) {
         LazyColumn(contentPadding = it) {
+            item {
+                ListItem(
+                    headlineContent = { Text(text = "StrataOre Drilling PLOD") },
+                    modifier = Modifier.clickable(onClick = onDrillingPlodClick),
+                )
+            }
             item {
                 ListItem(
                     headlineContent = { Text(text = "Account creation") },

@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import com.paligot.jsonforms.kotlin.panes.AccountCreationFormPane
 import com.paligot.jsonforms.kotlin.panes.AppleForm
 import com.paligot.jsonforms.kotlin.panes.ContactFormPane
+import com.paligot.jsonforms.kotlin.panes.DrillingPlodFormPane
 import com.paligot.jsonforms.kotlin.panes.FormListPane
 import com.paligot.jsonforms.kotlin.panes.LoginFormPane
 import com.paligot.jsonforms.kotlin.panes.address.AddressFormVM
@@ -13,6 +14,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 object FormList
+
+@Serializable
+object DrillingPlod
 
 @Serializable
 object AccountCreation
@@ -32,12 +36,18 @@ object AppleForm
 fun NavGraphBuilder.formDescriptionNavGraph(navController: NavController) {
     composable<FormList> {
         FormListPane(
+            onDrillingPlodClick = { navController.navigate(DrillingPlod) },
             onAccountCreationClick = { navController.navigate(AccountCreation) },
             onLogInClick = { navController.navigate(Login) },
             onContactClick = { navController.navigate(Contact) },
             onAddressClick = { navController.navigate(Address) },
             onAppleClick = { navController.navigate(AppleForm) },
         )
+    }
+    composable<DrillingPlod> {
+        DrillingPlodFormPane {
+            navController.popBackStack()
+        }
     }
     composable<AccountCreation> {
         AccountCreationFormPane {
